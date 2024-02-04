@@ -33,7 +33,6 @@ export function Mainpage() {
     toast("Your draft is being processed", {
       description: "Please wait for 30 seconds",
     });
-    setDrawerOpen(true);
     axios
       .post(`${server}/users/${userId}/draft`, { text: text })
       .then((response) => {
@@ -42,11 +41,12 @@ export function Mainpage() {
           .get(`${server}/users/${userId}/notes`)
           .then((response) => {
             setNotes(response.data);
+            setDrawerOpen(true);
           })
           .catch((error) => {
             console.error("Error fetching notes:", error);
           });
-        toast("Your draft has been processed", {});
+          
       })
       .catch((error) => {
         toast("Your draft could not be processed", {
