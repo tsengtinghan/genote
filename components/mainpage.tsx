@@ -59,6 +59,8 @@ export function Mainpage() {
 
   const handleDraftInput = () => {
     const text = inputRef.current?.value;
+    // delete text 
+    inputRef.current!.value = "";
     toast("Your draft is being processed", {
       description: "Please wait for 30 seconds",
     });
