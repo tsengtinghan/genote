@@ -5,10 +5,10 @@ const parseToMarkDown = (str: string): string => {
 };
 export function ReviewNote({
   note,
-  handleNoteClick,
+  handleBackLink,
 }: {
   note: Note;
-  handleNoteClick: (noteId: string) => void;
+  handleBackLink: (noteId: string) => void;
 }) {
   return (
     <div className="h-full w-full p-10">
@@ -18,7 +18,7 @@ export function ReviewNote({
           a: ({ children, href, ...props }) => {
             if (href === undefined) return <a {...props}>{children}</a>;
             return (
-              <span className="underline text-blue-600" onClick={() => handleNoteClick(href)} {...props}>
+              <span className="underline text-blue-600" onClick={() => handleBackLink(href)} {...props}>
                 {children}
               </span>
             

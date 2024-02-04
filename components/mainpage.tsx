@@ -44,6 +44,15 @@ export function Mainpage() {
     });
   }
   
+  function handleBackLink (title: string) {
+    axios.get(`${server}/users/${userId}/notes/from-title/${title}`)
+    .then((response) => {
+      handleNoteClick(response.data);
+    }).catch((error) => {
+      console.error("Error fetching notes:", error);
+    });
+  }
+  
   function handleNewNote () {
     setCurrentNoteId(null);
   }
@@ -128,7 +137,7 @@ export function Mainpage() {
     if (note === undefined) {
       rightSideComponent = <div>Could not find note</div>
     } else {
-      rightSideComponent = <ReviewNote note={note} handleNoteClick={handleNoteClick} />
+      rightSideComponent = <ReviewNote note={note} handleBackLink={handleBackLink} />
     }
   }
 
