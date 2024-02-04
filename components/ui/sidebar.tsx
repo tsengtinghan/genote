@@ -52,7 +52,7 @@ export function ScrollAreaDemo() {
                         ? 'bg-red-600'
                         : note.data.status === 'edited'
                         ? 'bg-yellow-600'
-                        : 'bg-blue-600 hover:bg-blue-700'
+                        : 'bg-transparent'
                     }`}></span>
                 </div>
               </CardTitle>
