@@ -1,11 +1,29 @@
 {
     "notes": [
         {
-            "title": "Atomic Habits",
-            "content": "Author: James Clear\n\n### Chapter 1\n## Atomic Habits - Chapter 1 Summary\n\n- **Introduction to Habits**: Emphasizes the compound growth of tiny improvements. 🌱\n- **The 1% Rule**: Explains how habits that improve by just **1%** can make a significant difference over time. 🔍\n- **The Story of the British Cycling Team**: Illustrates the power of marginal gains through the transformation of the British Cycling team, which went from mediocrity to winning by focusing on small ...",
+            "title": "Book Notes",
+            "content": "- [Lean Startup]()\n- [Homo Deus]()\n- [From 0 to 1]()",
+            "order": 1
+        },
+        {
+            "title": "Coding Tips",
+            "content": "## Python\n- use # to comment\n## JavaScript\n- Comment out using // ",
+            "order": 2
+        },
+        {
+            "title": "Learning Resources",
+            "content": "## Python\n- [Python.org](https://www.python.org/)\n- [Real Python](https://realpython.com/)\n- [Python Weekly](https://www.pythonweekly.com/)\n## JavaScript\n- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)\n- [JavaScript Weekly](https://javascriptweekly.com/)\n- [JavaScript.info](https://javascript.info/)",
             "order": 3
         },
-        {"title": "Coding Tips", "content": "## Python\n- use # to comment\n## JavaScript\n- Comment out using // ", "order": 2}
+        {
+            "title": "Lean Startup",
+            "content": "### Chapter 1
+## Atomic Habits - Chapter 1 Summary
+
+- **Introduction to Habits**: Emphasizes the compound growth of tiny improvements. 🌱
+- **The 1% Rule**: Explains how habits that improve by just **1%** can make a significant difference over time. 🔍
+- **The Story of the British Cycling Team**: Illustrates the power of marginal gains through the transformation of the British Cycling team, which went from mediocrity to winning by focusing on small improvements. 🚴"
+        }
     ] 
 }
 
