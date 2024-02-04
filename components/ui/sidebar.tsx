@@ -8,19 +8,16 @@ import {
   CardTitle,
 } from "./card";
 
-export function ScrollAreaDemo() {
-  const [notes, setNotes] = React.useState([]);
+export type Note = {
+  id: string;
+  data: {
+    title: string;
+    status: string;
+  };
+};
 
-  React.useEffect(() => {
-    fetch(
-      "https://prd-genote-bodpztde6a-an.a.run.app/users/mlOkrsQrXLaSqilkqrUD/notes"
-    )
-      .then((response) => response.json())
-      .then((data) => setNotes(data))
-      .catch((error) => console.error("Error fetching notes:", error));
-  }, []);
-  // console.log(notes);
-
+export function SideBar({notes}: {notes: Note[]}) {
+ 
   const sortedNotes = notes.sort((a, b) => {
     if (a.data.status === 'reviewed' && b.data.status !== 'reviewed') {
       return 1; 

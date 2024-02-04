@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
 import { useRef } from "react";
-import { ScrollAreaDemo } from "./ui/sidebar";
+import { SideBar, Note } from "./ui/sidebar";
 import { Draft } from "./draft";
 import axios from "axios";
 import { Toaster, toast } from 'sonner'
@@ -27,6 +27,7 @@ const userId: string = "mlOkrsQrXLaSqilkqrUD"
 
 export function Mainpage() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [notes, setNotes] = React.useState<Note[]>([]);
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
   
   const handleDraftInput = () => {
@@ -57,6 +58,13 @@ export function Mainpage() {
         setDrawerOpen(false);
       };
       document.addEventListener("mousedown", listener);
+      
+      fetch(
+        "https://prd-genote-bodpztde6a-an.a.run.app/users/mlOkrsQrXLaSqilkqrUD/notes"
+      )
+        .then((response) => response.json())
+        .then((data) => setNotes(data))
+        .catch((error) => console.error("Error fetching notes:", error));
       return () => {
         document.removeEventListener("mousedown", listener);
       };
@@ -66,7 +74,7 @@ export function Mainpage() {
     
     <div className="h-full w-full flex">
       <div className="border-r w-[300px]">
-        <ScrollAreaDemo />
+        <SideBar notes={notes}/>
       </div>
     
       <div className="w-full h-full">
