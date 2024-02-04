@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { Button } from "./ui/button";
  
 
 
@@ -17,7 +18,7 @@ export type Note = {
   };
 };
 
-export function SideBar({notes, handleNoteClick}: {notes: Note[], handleNoteClick: (noteId: string) => void}) {
+export function SideBar({notes, handleNoteClick, handleNewNote}: {notes: Note[], handleNoteClick: (noteId: string) => void, handleNewNote: () => void}) {
  
   // const sortedNotes = notes.sort((a, b) => {
   //   if (a.data.status === 'reviewed' && b.data.status !== 'reviewed') {
@@ -30,8 +31,11 @@ export function SideBar({notes, handleNoteClick}: {notes: Note[], handleNoteClic
   // console.log(sortedNotes);
   
   return (
-    <div>
-      <h2 className="text-xl text-[25px] mx-3 my-10 text-center">My Notes</h2>
+    <div className="w-full">
+      <h2 className="text-xl text-[25px] mx-3 mb-5 mt-10 text-center">My Notes</h2>
+      <div className="flex items-center justify-center w-full">
+        <Button className="w-full mx-3" onClick={handleNewNote}>New Note</Button>
+      </div>
       {notes.map((note) => (
         <div key={note.id}>
           <Card onClick={() => handleNoteClick(note.id)} >
