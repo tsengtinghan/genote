@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "./card";
 
+
 export type Note = {
   id: string;
   data: {
@@ -36,18 +37,21 @@ export function SideBar({notes}: {notes: Note[]}) {
           <Card>
             <CardHeader>
               <CardTitle>
-                <Link
-                  className={`text-sm ${
-                    note.data.status === 'added'
-                      ? 'text-red-600'
-                      : note.data.status === 'edited'
-                      ? 'text-yellow-600'
-                      : 'hover:text-blue-600'
-                  }`}
-                  href={`/notes/${note.id}`}
-                >
-                  {note.data.title}
-                </Link>
+                <div className="flex justify-normal">
+                    <Link
+                    className={`text-sm `}
+                    href={`/notes/${note.id}`}
+                    >
+                    {note.data.title}
+                    </Link>
+                    <span className={`h-2 w-2 ml-3 mt-1.5 inline-block rounded-full ${
+                        note.data.status === 'added'
+                        ? 'bg-red-600'
+                        : note.data.status === 'edited'
+                        ? 'bg-yellow-600'
+                        : 'bg-blue-600 hover:bg-blue-700'
+                    }`}></span>
+                </div>
               </CardTitle>
             </CardHeader>
           </Card>
@@ -55,5 +59,4 @@ export function SideBar({notes}: {notes: Note[]}) {
       ))}
     </div>
   );
-  
 }
