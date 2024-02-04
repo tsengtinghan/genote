@@ -16,9 +16,8 @@ export function ReviewNote({
         className="prose"
         components={{
           a: ({ children, href, ...props }) => {
-            if (href === undefined) return <a {...props}>{children}</a>;
             return (
-              <span className="underline text-blue-600" onClick={() => handleBackLink(href)} {...props}>
+              <span className="underline text-blue-600" onClick={() => handleBackLink(children)} {...props}>
                 {children}
               </span>
             
