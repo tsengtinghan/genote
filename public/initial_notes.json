@@ -2,7 +2,7 @@
     "notes": [
         {
             "title": "Book Notes",
-            "content": "- [Lean Startup]()\n- [Homo Deus]()\n- [From 0 to 1]()",
+            "content": "- [Lean Startup](Lean Startup)\n- [Homo Deus](Homo Deus)\n- [From 0 to 1](From 0 to 1)",
             "order": 1
         },
         {
@@ -17,13 +17,21 @@
         },
         {
             "title": "Lean Startup",
-            "content": "### Chapter 1
-## Atomic Habits - Chapter 1 Summary
-
-- **Introduction to Habits**: Emphasizes the compound growth of tiny improvements. 🌱
-- **The 1% Rule**: Explains how habits that improve by just **1%** can make a significant difference over time. 🔍
-- **The Story of the British Cycling Team**: Illustrates the power of marginal gains through the transformation of the British Cycling team, which went from mediocrity to winning by focusing on small improvements. 🚴"
+            "content": "Author: James Clear\n\n### Chapter 1\n## Atomic Habits - Chapter 1 Summary\n\n- **Introduction to Habits**: Emphasizes the compound growth of tiny improvements. 🌱\n- **The 1% Rule**: Explains how habits that improve by just **1%** can make a significant difference over time. 🔍\n- **The Story of the British Cycling Team**: Illustrates the power of marginal gains through the transformation of the British Cycling team, which went from mediocrity to winning by focusing on small improvements. 🚴",
+            "order": 4
+        },
+        {
+            "title": "Homo Deus",
+            "content": "Author: Yuval Noah Harari\n\n### Chapter 1\n## Homo Deus - Chapter 1 Summary\n\n- **The New Human Agenda**: Discusses humanity's quest for immortality, happiness, and divinity, outlining the potential future developments in biotechnology and artificial intelligence. 🌐\n- **The Anthropocene Era**: Highlights the impact of human activity on the Earth, marking a new geological era defined by human dominance over the planet. 🌍\n- **Dataism**: Introduces the concept of Dataism, a new possible framework of understanding the universe through data analysis. 💾",
+            "order": 5
+        },
+        {
+            "title":"From 0 to 1",
+            "content": "Author: Peter Thiel\n\n### Chapter 1\n## From 0 to 1 - Chapter 1 Summary\n\n- **The Challenge of the Future**: Emphasizes the importance of innovation in creating new technologies that do something new. 🚀\n- **Monopoly and Competition**: Argues that monopolies (not in the traditional sense) can be good for society if they are the result of doing something unique and not the outcome of unfair practices. 🏆\n- **The Power of Startups**: Discusses how startups are uniquely positioned to innovate and create value in the economy. 💼",
+            "order": 6
         }
+
+
     ] 
 }
 
