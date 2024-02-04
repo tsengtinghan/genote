@@ -14,6 +14,7 @@ export type Note = {
   id: string;
   data: {
     title: string;
+    content: string;
     status: string;
   };
 };
