@@ -6,9 +6,7 @@ import { Mainpage } from "@/components/mainpage"
 export default function Home() {
   return (
     <div>
-      <Mainpage></Mainpage>
-      <Button>Click me</Button>
-      <TextareaForm />
+      <Mainpage />
     </div>
   )
 }
