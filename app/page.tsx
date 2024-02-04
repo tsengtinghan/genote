@@ -5,7 +5,7 @@ import { Mainpage } from "@/components/mainpage"
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-screen w-screen">
       <Mainpage />
     </div>
   )
