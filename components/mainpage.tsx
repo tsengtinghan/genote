@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { useRef } from "react";
 import { SideBar, Note } from "./sidebar";
+import { ReviewNote } from "./reviewNote";
 import { Draft } from "./draft";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
@@ -20,13 +21,22 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
+// load json data from public folder
+const initialNotes = require("../public/initial_notes.json");
+
 const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
-const userId: string = "mlOkrsQrXLaSqilkqrUD";
 
 export function Mainpage() {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [userId, setUserId] = React.useState<string>("mlOkrsQrXLaSqilkqrUD");
   const [notes, setNotes] = React.useState<Note[]>([]);
+  const [currentNoteId, setCurrentNoteId] = React.useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
+  
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  
+  function handleNoteClick (noteId: string) {
+    setCurrentNoteId(noteId);
+  }
 
   const handleDraftInput = () => {
     const text = inputRef.current?.value;
@@ -68,26 +78,44 @@ export function Mainpage() {
       setDrawerOpen(false);
     };
     document.addEventListener("mousedown", listener);
-
-    fetch(
-      "https://prd-genote-bodpztde6a-an.a.run.app/users/mlOkrsQrXLaSqilkqrUD/notes"
-    )
-      .then((response) => response.json())
-      .then((data) => setNotes(data))
+    console.log(initialNotes)
+    
+    axios
+    .post(`${server}/users`, initialNotes)
+    .then((response) => {
+      const userId = response.data;
+      setUserId(response.data);
+      axios.get(`${server}/users/${userId}/notes`)
+      .then((response) => setNotes(response.data))
       .catch((error) => console.error("Error fetching notes:", error));
+    })
+
+    
     return () => {
       document.removeEventListener("mousedown", listener);
     };
   }, []);
+  
+  let rightSideComponent: React.ReactNode
+  if (currentNoteId === null) {
+    rightSideComponent = <Draft inputRef={inputRef} handleDraftInput={handleDraftInput} />
+  } else {
+    const note = notes.find((note) => note.id === currentNoteId);
+    if (note === undefined) {
+      rightSideComponent = <div>Could not find note</div>
+    } else {
+      rightSideComponent = <ReviewNote note={note} />
+    }
+  }
 
   return (
     <div className="h-full w-full flex">
       <div className="border-r w-[436px]">
-        <SideBar notes={notes} />
+        <SideBar notes={notes} handleNoteClick={handleNoteClick}/>
       </div>
 
       <div className="w-full h-full">
-        <Draft inputRef={inputRef} handleDraftInput={handleDraftInput} />
+        {rightSideComponent}
       </div>
 
       <Toaster />

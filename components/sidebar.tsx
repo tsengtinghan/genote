@@ -1,4 +1,3 @@
-import * as React from "react";
 import Link from "next/link";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -7,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+ 
 
 
 export type Note = {
@@ -17,24 +17,24 @@ export type Note = {
   };
 };
 
-export function SideBar({notes}: {notes: Note[]}) {
+export function SideBar({notes, handleNoteClick}: {notes: Note[], handleNoteClick: (noteId: string) => void}) {
  
-  const sortedNotes = notes.sort((a, b) => {
-    if (a.data.status === 'reviewed' && b.data.status !== 'reviewed') {
-      return 1; 
-    } else if (b.data.status === 'reviewed' && a.data.status !== 'reviewed') {
-      return -1; 
-    }
-    return 0; 
-  });
+  // const sortedNotes = notes.sort((a, b) => {
+  //   if (a.data.status === 'reviewed' && b.data.status !== 'reviewed') {
+  //     return 1; 
+  //   } else if (b.data.status === 'reviewed' && a.data.status !== 'reviewed') {
+  //     return -1; 
+  //   }
+  //   return 0; 
+  // });
   // console.log(sortedNotes);
   
   return (
     <div>
       <h2 className="text-xl text-[25px] mx-3 my-10 text-center">My Notes</h2>
-      {sortedNotes.map((note) => (
-        <React.Fragment key={note.id}>
-          <Card>
+      {notes.map((note) => (
+        <div key={note.id}>
+          <Card onClick={() => handleNoteClick(note.id)} >
             <CardHeader>
               <CardTitle>
                 <div className="flex justify-normal">
@@ -55,7 +55,7 @@ export function SideBar({notes}: {notes: Note[]}) {
               </CardTitle>
             </CardHeader>
           </Card>
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );
