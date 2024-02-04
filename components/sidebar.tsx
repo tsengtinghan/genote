@@ -45,7 +45,7 @@ export function SideBar({notes, handleNoteClick, handleNewNote, handleNewUser}: 
                 <div className="flex justify-normal">
                     <Link
                     className={`text-sm `}
-                    href={`/notes/${note.id}`}
+                    href={``}
                     >
                     {note.data.title}
                     </Link>
