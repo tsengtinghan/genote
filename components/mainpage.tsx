@@ -104,9 +104,16 @@ export function Mainpage() {
     document.addEventListener("mousedown", listener);
     console.log(initialNotes)
     
-    axios.get(`${server}/users/${userId}/notes`)
-    .then((response) => setNotes(response.data))
-    .catch((error) => console.error("Error fetching notes:", error));
+    axios
+      .post(`${server}/users`, initialNotes)
+      .then((response) => {
+        const userId = response.data;
+        setUserId(response.data);
+        axios
+          .get(`${server}/users/${userId}/notes`)
+          .then((response) => setNotes(response.data))
+          .catch((error) => console.error("Error fetching notes:", error));
+      });
 
     
     return () => {
