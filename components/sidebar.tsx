@@ -19,7 +19,7 @@ export type Note = {
   };
 };
 
-export function SideBar({notes, handleNoteClick, handleNewNote}: {notes: Note[], handleNoteClick: (noteId: string) => void, handleNewNote: () => void}) {
+export function SideBar({notes, handleNoteClick, handleNewNote, handleNewUser}: {notes: Note[], handleNoteClick: (noteId: string) => void, handleNewNote: () => void, handleNewUser: () => void},) {
  
   // const sortedNotes = notes.sort((a, b) => {
   //   if (a.data.status === 'reviewed' && b.data.status !== 'reviewed') {
@@ -62,6 +62,7 @@ export function SideBar({notes, handleNoteClick, handleNewNote}: {notes: Note[],
           </Card>
         </div>
       ))}
+      <Button className="absolute bottom-0 m-2" onClick={handleNewUser}>New User</Button>
     </div>
   );
 }

@@ -70,6 +70,19 @@ export function Mainpage() {
         });
       });
   };
+  
+  const handleNewUser = () => {
+    axios
+      .post(`${server}/users`, initialNotes)
+      .then((response) => {
+        const userId = response.data;
+        setUserId(response.data);
+        axios
+          .get(`${server}/users/${userId}/notes`)
+          .then((response) => setNotes(response.data))
+          .catch((error) => console.error("Error fetching notes:", error));
+      });
+  }
 
   // when mouse is clicked outside of the drawer, close the drawer
   React.useEffect(() => {
@@ -84,15 +97,6 @@ export function Mainpage() {
     document.addEventListener("mousedown", listener);
     console.log(initialNotes)
     
-    // axios
-    // .post(`${server}/users`, initialNotes)
-    // .then((response) => {
-    //   const userId = response.data;
-    //   setUserId(response.data);
-    //   axios.get(`${server}/users/${userId}/notes`)
-    //   .then((response) => setNotes(response.data))
-    //   .catch((error) => console.error("Error fetching notes:", error));
-    // })
     axios.get(`${server}/users/${userId}/notes`)
     .then((response) => setNotes(response.data))
     .catch((error) => console.error("Error fetching notes:", error));
@@ -118,7 +122,7 @@ export function Mainpage() {
   return (
     <div className="h-full w-full flex">
       <div className="border-r w-[436px]">
-        <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote}/>
+        <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote} handleNewUser={handleNewUser}/>
       </div>
 
       <div className="w-full h-full">
