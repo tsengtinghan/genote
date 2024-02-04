@@ -20,6 +20,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { set } from "react-hook-form";
 
 // load json data from public folder
 const initialNotes = require("../public/initial_notes.json");
@@ -36,6 +37,12 @@ export function Mainpage() {
   
   function handleNoteClick (noteId: string) {
     setCurrentNoteId(noteId);
+    axios.post(`${server}/users/${userId}/notes/${noteId}/review`)
+    .then((response) => {
+      setNotes(response.data);
+    }).catch((error) => {
+      console.error("Error fetching notes:", error);
+    });
   }
   
   function handleNewNote () {
