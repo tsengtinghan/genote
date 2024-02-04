@@ -6,7 +6,7 @@ import {
   Card,
   CardHeader,
   CardTitle,
-} from "./card";
+} from "./ui/card";
 
 
 export type Note = {

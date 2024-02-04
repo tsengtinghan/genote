@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
 import { useRef } from "react";
-import { SideBar, Note } from "./ui/sidebar";
+import { SideBar, Note } from "./sidebar";
 import { Draft } from "./draft";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
