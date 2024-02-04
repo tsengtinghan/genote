@@ -34,6 +34,7 @@ export function SideBar({
   // });
   // console.log(sortedNotes);
 
+  
   return (
     <div className="w-full">
       <h2 className="text-xl text-[25px] mx-3 mb-5 mt-10 text-center">
