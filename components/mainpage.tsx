@@ -20,7 +20,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { set } from "react-hook-form";
 
 // load json data from public folder
 const initialNotes = require("../public/initial_notes.json");
@@ -122,13 +121,13 @@ export function Mainpage() {
     if (note === undefined) {
       rightSideComponent = <div>Could not find note</div>
     } else {
-      rightSideComponent = <ReviewNote note={note} />
+      rightSideComponent = <ReviewNote note={note} handleNoteClick={handleNoteClick} />
     }
   }
 
   return (
     <div className="h-full w-full flex">
-      <div className="border-r w-[436px]">
+      <div className="border-r w-[550px]">
         <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote} handleNewUser={handleNewUser}/>
       </div>
 
