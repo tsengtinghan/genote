@@ -37,15 +37,17 @@ export function Mainpage() {
       .post(`${server}/users/${userId}/draft`, { text: text })
       .then((response) => {
         setDrawerOpen(true);
-        axios
-          .get(`${server}/users/${userId}/notes`)
-          .then((response) => {
-            setNotes(response.data);
-            setDrawerOpen(true);
-          })
-          .catch((error) => {
-            console.error("Error fetching notes:", error);
-          });
+        
+        // axios
+        //   .get(`${server}/users/${userId}/notes`)
+        //   .then((response) => {
+        //     setNotes(response.data);
+        //     setDrawerOpen(true);
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error fetching notes:", error);
+        //   });
+        setNotes(response.data);
           
       })
       .catch((error) => {
@@ -80,7 +82,7 @@ export function Mainpage() {
 
   return (
     <div className="h-full w-full flex">
-      <div className="border-r w-[300px]">
+      <div className="border-r w-[436px]">
         <SideBar notes={notes} />
       </div>
 

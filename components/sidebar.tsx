@@ -31,7 +31,7 @@ export function SideBar({notes}: {notes: Note[]}) {
   
   return (
     <div>
-      <h2 className="text-xl mx-3 my-4">Recent Notes</h2>
+      <h2 className="text-xl text-[25px] mx-3 my-10 text-center">My Notes</h2>
       {sortedNotes.map((note) => (
         <React.Fragment key={note.id}>
           <Card>
