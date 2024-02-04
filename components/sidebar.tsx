@@ -14,6 +14,7 @@ export type Note = {
   id: string;
   data: {
     title: string;
+    content: string;
     status: string;
   };
 };
@@ -44,7 +45,7 @@ export function SideBar({notes, handleNoteClick, handleNewNote}: {notes: Note[],
                 <div className="flex justify-normal">
                     <Link
                     className={`text-sm `}
-                    href={`/notes/${note.id}`}
+                    href={``}
                     >
                     {note.data.title}
                     </Link>
