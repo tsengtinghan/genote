@@ -42,7 +42,7 @@ export function SideBar({
       </h2>
       <div className="flex items-center justify-center w-full ">
         <Button className="w-full mx-3 mb-3" onClick={handleNewNote}>
-          New Note
+          New Draft
         </Button>
       </div>
       <ScrollArea className="h-dvh w-full rounded-md border">

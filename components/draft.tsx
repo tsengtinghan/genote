@@ -9,7 +9,7 @@ export function Draft({inputRef, handleDraftInput}: {inputRef: React.RefObject<H
       <h1 className="h-[50px] flex items-center text-[30px] font-bold">Drafting</h1>
       <Textarea ref={inputRef}
         className="pl-5 w-full text-lg flex-1"
-        placeholder="Write here"
+        placeholder="Write down your thoughts here, don't worry about grammar or formatting"
       />
       <div className="h-[100px] flex justify-center items-center">
         <Button onClick={handleDraftInput} className="">Dump</Button>
