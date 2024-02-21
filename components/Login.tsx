@@ -14,6 +14,7 @@ export function Login( {onLogin} : {onLogin: (email: string, password: string) =
   }
 
   return (
+    <div className="justify-center items-center w-scrren h-screen flex">
     <form onSubmit={handleLogin}>
       <Card className="w-full max-w-sm">
         <CardHeader className="space-y-2">
@@ -37,5 +38,7 @@ export function Login( {onLogin} : {onLogin: (email: string, password: string) =
         </CardFooter>
       </Card>
     </form>
+    </div>
+    
   )
 }
