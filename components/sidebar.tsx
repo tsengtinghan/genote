@@ -17,12 +17,12 @@ export function SideBar({
   notes,
   handleNoteClick,
   handleNewNote,
-  handleNewUser,
+  onLogout,
 }: {
   notes: Note[];
   handleNoteClick: (noteId: string) => void;
   handleNewNote: () => void;
-  handleNewUser: () => void;
+  onLogout: () => void;
 }) {
   // const sortedNotes = notes.sort((a, b) => {
   //   if (a.data.status === 'reviewed' && b.data.status !== 'reviewed') {
@@ -36,7 +36,7 @@ export function SideBar({
 
   
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <h2 className="text-xl text-[25px] mx-3 mb-5 mt-10 text-center">
         My Notes
       </h2>
@@ -80,8 +80,8 @@ export function SideBar({
           </div>
         ))}
       </ScrollArea>
-      <Button className="absolute bottom-0 m-2" onClick={handleNewUser}>
-        New User
+      <Button className="absolute" onClick={onLogout}>
+        Logout
       </Button>
     </div>
   );

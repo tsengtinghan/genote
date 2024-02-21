@@ -27,8 +27,7 @@ const initialNotes = require("../public/initial_notes.json");
 
 const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
 
-export function Mainpage() {
-  const [userId, setUserId] = React.useState<string>("mlOkrsQrXLaSqilkqrUD");
+export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () => void }) {
   const [notes, setNotes] = React.useState<Note[]>([]);
   const [currentNoteId, setCurrentNoteId] = React.useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
@@ -90,43 +89,18 @@ export function Mainpage() {
         });
       });
   };
-  
-  const handleNewUser = () => {
-    axios
-      .post(`${server}/users`, initialNotes)
-      .then((response) => {
-        const userId = response.data;
-        setUserId(response.data);
-        axios
-          .get(`${server}/users/${userId}/notes`)
-          .then((response) => setNotes(response.data))
-          .catch((error) => console.error("Error fetching notes:", error));
-      });
-  }
 
   // when mouse is clicked outside of the drawer, close the drawer
   React.useEffect(() => {
     const listener = (e: MouseEvent) => {
-      // if (e.target instanceof HTMLElement) {
-      //   if (e.target.closest("[data-drawer]") === null) {
-      //     setDrawerOpen(false);
-      //   }
-      // }
       setDrawerOpen(false);
     };
     document.addEventListener("mousedown", listener);
-    console.log(initialNotes)
-    
+   
     axios
-      .post(`${server}/users`, initialNotes)
-      .then((response) => {
-        const userId = response.data;
-        setUserId(response.data);
-        axios
-          .get(`${server}/users/${userId}/notes`)
-          .then((response) => {setNotes(response.data); setInitialLoading(false)})
-          .catch((error) => console.error("Error fetching notes:", error));
-      });
+      .get(`${server}/users/${userId}/notes`)
+      .then((response) => {setNotes(response.data); setInitialLoading(false)})
+      .catch((error) => console.error("Error fetching notes:", error));
 
     
     return () => {
@@ -149,7 +123,7 @@ export function Mainpage() {
   const main_content = (
     <div className="h-full w-full flex">
       <div className="border-r w-[550px]">
-        <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote} handleNewUser={handleNewUser}/>
+        <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote} onLogout={onLogout}/>
       </div>
 
       <div className="w-full h-full">
