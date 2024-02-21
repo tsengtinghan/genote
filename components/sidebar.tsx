@@ -51,7 +51,7 @@ export function SideBar({
             <Card
               className={`border-4 mt-4 ${
                 note.data.status === "added"
-                  ? "border-red-300"
+                  ? "border-green-300"
                   : note.data.status === "edited"
                   ? "border-yellow-300"
                   : "bg-transparent"
