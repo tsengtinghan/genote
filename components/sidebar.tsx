@@ -3,7 +3,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-
+ 
 export type Note = {
   id: string;
   data: {
@@ -17,11 +17,13 @@ export function SideBar({
   notes,
   handleNoteClick,
   handleNewNote,
+  handleDeleteNote,
   onLogout,
 }: {
   notes: Note[];
   handleNoteClick: (noteId: string) => void;
   handleNewNote: () => void;
+  handleDeleteNote: (noteId: string) => void;
   onLogout: () => void;
 }) {
   // const sortedNotes = notes.sort((a, b) => {
@@ -60,11 +62,11 @@ export function SideBar({
             >
               <CardHeader>
                 <CardTitle>
-                  <div className="flex justify-normal">
+                  <div className="flex justify-between items-center">
                     <Link className={`text-lg font-normal`} href={``}>
                       {note.data.title}
                     </Link>
-                    <span
+                    {/* <span
                       className={`h-2 w-2 ml-3 mt-1.5 inline-block rounded-full ${
                         note.data.status === "added"
                           ? "bg-red-600"
@@ -72,7 +74,24 @@ export function SideBar({
                           ? "bg-yellow-600"
                           : "bg-transparent"
                       }`}
-                    ></span>
+                    ></span> */}
+                    <Button className="ml-3 bg-slate-900" onClick={() => handleDeleteNote(note.id)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M3 6h18" />
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                      </svg>
+                    </Button>
                   </div>
                 </CardTitle>
               </CardHeader>

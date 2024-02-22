@@ -46,6 +46,18 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
     });
   }
   
+  function handleDeleteNote (noteId: string) {
+    axios.delete(`${server}/users/${userId}/notes/${noteId}`)
+    .then((response) => {
+      setNotes(notes.filter((n) => n.id !== noteId));
+      if (currentNoteId === noteId) {
+        setCurrentNoteId(null);
+      }
+    }).catch((error) => {
+      console.error("Error deleting note:", error);
+    });
+  }
+  
   function handleBackLink (title: string) {
     axios.get(`${server}/users/${userId}/notes/from-title/${title}`)
     .then((response) => {
@@ -70,16 +82,6 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
       .post(`${server}/users/${userId}/draft`, { text: text })
       .then((response) => {
         setDrawerOpen(true);
-        
-        // axios
-        //   .get(`${server}/users/${userId}/notes`)
-        //   .then((response) => {
-        //     setNotes(response.data);
-        //     setDrawerOpen(true);
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error fetching notes:", error);
-        //   });
         setNotes(response.data);
           
       })
@@ -96,7 +98,7 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
       setDrawerOpen(false);
     };
     document.addEventListener("mousedown", listener);
-   
+    console.log(userId)
     axios
       .get(`${server}/users/${userId}/notes`)
       .then((response) => {setNotes(response.data); setInitialLoading(false)})
@@ -112,18 +114,13 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
   if (currentNoteId === null) {
     rightSideComponent = <Draft inputRef={inputRef} handleDraftInput={handleDraftInput} />
   } else {
-    const note = notes.find((note) => note.id === currentNoteId);
-    if (note === undefined) {
-      rightSideComponent = <div>Could not find note</div>
-    } else {
-      rightSideComponent = <ReviewNote note={note} handleBackLink={handleBackLink} />
-    }
+    rightSideComponent = <ReviewNote userId={userId} noteId={currentNoteId} handleBackLink={handleBackLink} />
   }
 
   const main_content = (
     <div className="h-full w-full flex">
       <div className="border-r w-[550px]">
-        <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote} onLogout={onLogout}/>
+        <SideBar notes={notes} handleNoteClick={handleNoteClick} handleNewNote={handleNewNote} handleDeleteNote={handleDeleteNote} onLogout={onLogout}/>
       </div>
 
       <div className="w-full h-full">

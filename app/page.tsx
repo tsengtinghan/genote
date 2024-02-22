@@ -11,7 +11,7 @@ const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
 
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
   
   const loginUser = async (email: string, password: string) => {
