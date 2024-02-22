@@ -4,6 +4,7 @@ import React from "react";
 import { Textarea } from "@/components/ui/textarea"
 import axios from "axios";
 import { set } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 
 const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
 
@@ -42,6 +43,7 @@ export function ReviewNote({
       .catch((error) => {
         console.error("Error fetching note:", error);
       });
+        
   }, [noteId]);
   
   const handleEdit = () => {
@@ -64,18 +66,24 @@ export function ReviewNote({
   console.log(note)
   
   const editComponent = (
+    <>
     <div onDoubleClick={handleEndEdit}>
-       <Textarea
+      <div>
+      <Textarea
         className="w-full h-96"
         defaultValue={note.data.content}
         ref={inputRef}
       ></Textarea>
+      </div>
+       
+      <Button onClick={handleEndEdit}>Save</Button>
     </div>
-     
+    
+    </>
   );
   
   const markdownComponent = (
-    <div onDoubleClick={handleEdit}>
+    <div onClick={handleEdit} className="h-full">
       <Markdown
         className="prose"
         
