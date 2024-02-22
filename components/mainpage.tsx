@@ -51,7 +51,7 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
     .then((response) => {
       setNotes(notes.filter((n) => n.id !== noteId));
       // lengths of notes is zero or currentNoteId is null
-      if (currentNoteId === noteId || notes.length === 0) {
+      if (currentNoteId === noteId || notes.length === 1) {
         setCurrentNoteId(null);
       }
     }).catch((error) => {
