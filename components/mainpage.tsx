@@ -50,7 +50,8 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
     axios.delete(`${server}/users/${userId}/notes/${noteId}`)
     .then((response) => {
       setNotes(notes.filter((n) => n.id !== noteId));
-      if (currentNoteId === noteId) {
+      // lengths of notes is zero or currentNoteId is null
+      if (currentNoteId === noteId || notes.length === 0) {
         setCurrentNoteId(null);
       }
     }).catch((error) => {
