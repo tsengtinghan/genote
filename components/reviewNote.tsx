@@ -5,8 +5,8 @@ import { Textarea } from "@/components/ui/textarea"
 import axios from "axios";
 import { set } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import config from "@/lib/config";
 
-const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
 
 const parseToMarkDown = (str: string): string => {
   return str.replace(/\\n/g, "\n");
@@ -33,7 +33,7 @@ export function ReviewNote({
   
   React.useEffect(() => {
     axios
-      .get(`${server}/users/${userId}/notes/${noteId}`)
+      .get(`${config.backendURL}/users/${userId}/notes/${noteId}`)
       .then((response) => {
         setNote({
           'id': noteId,
@@ -54,7 +54,7 @@ export function ReviewNote({
     setIsEditing(!isEditing);
     // save the note (put request) using axios
     setNote(prev => {prev.data.content = inputRef.current?.value as string; return prev;})
-    axios.put(`${server}/users/${userId}/notes/${note.id}`, {
+    axios.put(`${config.backendURL}/users/${userId}/notes/${note.id}`, {
       title: note.data.title,
       content: inputRef.current?.value,
     }).then((response) => {

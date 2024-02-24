@@ -9,6 +9,7 @@ import { Draft } from "./draft";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import config from "@/lib/config";
 
 import {
   Drawer,
@@ -25,7 +26,6 @@ import { set } from "react-hook-form";
 // load json data from public folder
 const initialNotes = require("../public/initial_notes.json");
 
-const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
 
 export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () => void }) {
   const [notes, setNotes] = React.useState<Note[]>([]);
@@ -38,7 +38,7 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
   
   function handleNoteClick (noteId: string) {
     setCurrentNoteId(noteId);
-    axios.post(`${server}/users/${userId}/notes/${noteId}/review`)
+    axios.post(`${config.backendURL}/users/${userId}/notes/${noteId}/review`)
     .then((response) => {
       setNotes(response.data);
     }).catch((error) => {
@@ -47,7 +47,7 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
   }
   
   function handleDeleteNote (noteId: string) {
-    axios.delete(`${server}/users/${userId}/notes/${noteId}`)
+    axios.delete(`${config.backendURL}/users/${userId}/notes/${noteId}`)
     .then((response) => {
       setNotes(notes.filter((n) => n.id !== noteId));
       // lengths of notes is zero or currentNoteId is null
@@ -60,7 +60,7 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
   }
   
   function handleBackLink (title: string) {
-    axios.get(`${server}/users/${userId}/notes/from-title/${title}`)
+    axios.get(`${config.backendURL}/users/${userId}/notes/from-title/${title}`)
     .then((response) => {
       handleNoteClick(response.data);
     }).catch((error) => {
@@ -80,7 +80,7 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
       description: "Please wait for 30 seconds",
     });
     axios
-      .post(`${server}/users/${userId}/draft`, { text: text })
+      .post(`${config.backendURL}/users/${userId}/draft`, { text: text })
       .then((response) => {
         setDrawerOpen(true);
         setNotes(response.data);
@@ -95,13 +95,15 @@ export function Mainpage({ userId, onLogout }: { userId: string, onLogout: () =>
 
   // when mouse is clicked outside of the drawer, close the drawer
   React.useEffect(() => {
+    console.log(process.env.REACT_APP_SERVER_URL)
     const listener = (e: MouseEvent) => {
       setDrawerOpen(false);
     };
     document.addEventListener("mousedown", listener);
     console.log(userId)
+    console.log(config)
     axios
-      .get(`${server}/users/${userId}/notes`)
+      .get(`${config.backendURL}/users/${userId}/notes`)
       .then((response) => {setNotes(response.data); setInitialLoading(false)})
       .catch((error) => console.error("Error fetching notes:", error));
 

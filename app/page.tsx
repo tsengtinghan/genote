@@ -5,9 +5,9 @@ import { Login } from "@/components/Login"
 import { useState } from "react"
 import { useEffect } from "react"
 import { set } from "react-hook-form";
+import config from "@/lib/config";
 
-
-const server: string = "https://prd-genote-bodpztde6a-an.a.run.app";
+const server = process.env.REACT_APP_SERVER_URL;
 
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
   
   const loginUser = async (email: string, password: string) => {
     try {
-      const response = await fetch(`${server}/login`, {
+      const response = await fetch(`${config.backendURL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
