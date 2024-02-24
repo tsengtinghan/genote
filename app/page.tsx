@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { set } from "react-hook-form";
 import config from "@/lib/config";
+import { log } from "console";
 
 const server = process.env.REACT_APP_SERVER_URL;
 
@@ -51,10 +52,8 @@ export default function Home() {
   }
   
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    if (isLoggedIn) {
-      setIsLoggedIn(true);
-      setUserId(localStorage.getItem('userId') || "");
+    if (localStorage.getItem('userId') !== ""){
+      loginUser(localStorage.getItem('userId') as string, "password");
     }
   }, []);
   
