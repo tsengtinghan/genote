@@ -30,7 +30,9 @@ export default function Home() {
         // Assume the API returns an "ok" or some token on success
         // For simplicity, we'll just store a logged-in flag. In a real app, you might store a token.
         const responseText = await response.json();
+        
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('email', email);
         localStorage.setItem('userId', responseText);
         setUserId(responseText);
         setIsLoggedIn(true);
@@ -53,7 +55,7 @@ export default function Home() {
   
   useEffect(() => {
     if (localStorage.getItem('userId') !== ""){
-      loginUser(localStorage.getItem('userId') as string, "password");
+      loginUser(localStorage.getItem('email') as string, "password");
     }
   }, []);
   
