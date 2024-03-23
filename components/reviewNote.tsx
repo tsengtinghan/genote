@@ -47,11 +47,13 @@ export function ReviewNote({
   }, [noteId]);
   
   const handleEdit = () => {
-    setIsEditing(!isEditing);
+    //setIsEditing(!isEditing);
+    setIsEditing(false)
   }
   
   const handleEndEdit = () => {
-    setIsEditing(!isEditing);
+    // setIsEditing(!isEditing);
+    setIsEditing(false)
     // save the note (put request) using axios
     setNote(prev => {prev.data.content = inputRef.current?.value as string; return prev;})
     axios.put(`${config.backendURL}/users/${userId}/notes/${note.id}`, {
