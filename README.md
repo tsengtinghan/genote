@@ -3,9 +3,9 @@ Demo
 https://genote.vercel.app/
 
 Links
-Backend: https://github.com/ShinnosukeUesaka/genote_backend
-Frontend: https://github.com/tsengtinghan/genote
-Devpost: https://devpost.com/software/genote
+- Backend: https://github.com/ShinnosukeUesaka/genote_backend
+- Frontend: https://github.com/tsengtinghan/genote
+- Devpost: https://devpost.com/software/genote
 
 We have many fleeting ideas, learnings, and random musing every day, but there isn't a tool that helps us record and organize these information efficiently. The current knowledge management tools like notion and obsidian make it hard to just add a small piece of note because of their complex structure. Imagine wanting to jot down a quick thought inspired by a seminar but having to go through all the folders and hyperlinks in your note-taking app to correctly place your note, by the time you find the place your thought may have faded.
 
