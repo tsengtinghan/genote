@@ -2,6 +2,12 @@
 Demo
 https://genote.vercel.app/
 
+
+
+https://github.com/tsengtinghan/genote/assets/45286939/8609cd75-5ea3-4408-82f2-746fbbf1c584
+
+
+
 Links
 - Backend: https://github.com/ShinnosukeUesaka/genote_backend
 - Frontend: https://github.com/tsengtinghan/genote
